@@ -1,0 +1,10 @@
+{
+  "name": "MOD1 Demo Firmware",
+  "version": "0.1.0-mock",
+  "target": "Arduino Nano / ATmega328P",
+  "build": "UI demonstration only",
+  "mock": true,
+  "hexFile": null,
+  "sha256": null,
+  "notes": "This mock does not write firmware to hardware."
+}
