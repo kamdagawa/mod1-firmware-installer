@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#101216">
+  <title>MOD1 Firmware Installer — Mock</title>
+  <meta name="description" content="HAGIWO MOD1向けファームウェア・インストーラーのUIモックです。">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">M1</span>
+      <div>
+        <p class="eyebrow">HAGIWO MOD1</p>
+        <h1>Firmware Installer</h1>
+      </div>
+    </div>
+    <span class="badge badge-mock">UI MOCK</span>
+  </header>
+
+  <main class="layout">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">ワンクリック・インストール</p>
+        <h2>Arduino IDEを使わずに、<br>MOD1へファームウェアを書き込みます。</h2>
+        <p class="lead">
+          このページは操作確認用のモックです。USBポートの選択までは実際に動作しますが、
+          現段階ではArduino Nanoへデータを書き込みません。
+        </p>
+      </div>
+
+      <dl class="firmware-summary" aria-label="ファームウェア情報">
+        <div><dt>Firmware</dt><dd id="firmware-name">読み込み中…</dd></div>
+        <div><dt>Version</dt><dd id="firmware-version">—</dd></div>
+        <div><dt>Target</dt><dd id="firmware-target">—</dd></div>
+        <div><dt>Build</dt><dd id="firmware-build">—</dd></div>
+      </dl>
+    </section>
+
+    <section class="notice notice-danger" role="alert">
+      <div class="notice-icon" aria-hidden="true">!</div>
+      <div>
+        <h2>USB接続前に、Eurorack電源を外してください</h2>
+        <p>MOD1をケースから外す必要はありませんが、Eurorack側の電源を切り、USBと同時給電しないでください。</p>
+      </div>
+    </section>
+
+    <section class="panel installer" aria-labelledby="installer-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">INSTALLATION</p>
+          <h2 id="installer-title">3つの手順でインストール</h2>
+        </div>
+        <span id="browser-badge" class="badge">確認中</span>
+      </div>
+
+      <ol class="steps">
+        <li class="step" data-step="1">
+          <div class="step-index">1</div>
+          <div class="step-content">
+            <h3>準備を確認</h3>
+            <p>パソコン版ChromeまたはEdgeを使用し、MOD1のEurorack電源を外します。</p>
+            <label class="check-row">
+              <input id="safety-check" type="checkbox">
+              <span>Eurorack電源を外しました</span>
+            </label>
+          </div>
+        </li>
+
+        <li class="step" data-step="2">
+          <div class="step-index">2</div>
+          <div class="step-content">
+            <h3>Arduino Nanoを選択</h3>
+            <p>データ通信対応USBケーブルでNanoを接続し、ブラウザーの一覧から選択します。</p>
+            <button id="connect-button" class="button button-secondary" type="button" disabled>
+              USBデバイスを選択
+            </button>
+            <div id="device-card" class="device-card" hidden>
+              <span class="device-dot" aria-hidden="true"></span>
+              <div>
+                <strong>選択済みのシリアルデバイス</strong>
+                <p id="device-details">USB情報を取得しました</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="step" data-step="3">
+          <div class="step-index">3</div>
+          <div class="step-content">
+            <h3>インストール</h3>
+            <p>このモックでは、実機へ書き込まずに進捗表示だけを確認できます。</p>
+            <button id="install-button" class="button button-primary" type="button" disabled>
+              モック書き込みを開始
+            </button>
+          </div>
+        </li>
+      </ol>
+
+      <div id="progress-panel" class="progress-panel" hidden aria-live="polite">
+        <div class="progress-header">
+          <strong id="progress-label">準備中…</strong>
+          <span id="progress-percent">0%</span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <pre id="log-output" class="log-output"></pre>
+      </div>
+
+      <div id="result-panel" class="result-panel" hidden tabindex="-1">
+        <div class="result-icon" aria-hidden="true">✓</div>
+        <div>
+          <h3>モック処理が完了しました</h3>
+          <p>実装版では、ここで書き込み後の検証結果とUSBを外す案内を表示します。</p>
+        </div>
+      </div>
+
+      <div id="error-panel" class="error-panel" hidden role="alert"></div>
+    </section>
+
+    <section class="panel compatibility">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">COMPATIBILITY</p>
+          <h2>対応環境</h2>
+        </div>
+      </div>
+      <div class="compat-grid">
+        <article><strong>Windows</strong><span>Chrome / Edge</span></article>
+        <article><strong>macOS</strong><span>Chrome / Edge</span></article>
+        <article><strong>Linux</strong><span>Chrome / Chromium</span></article>
+        <article class="not-supported"><strong>非対応</strong><span>Safari / Firefox / スマートフォン</span></article>
+      </div>
+    </section>
+
+    <details class="panel advanced">
+      <summary>上級者向け情報</summary>
+      <div class="advanced-body">
+        <p>正式版では、配布SDカード内のHEXと同一のファームウェアをWebページから取得し、SHA-256検証後に書き込みます。</p>
+        <dl>
+          <div><dt>MCU</dt><dd>ATmega328P</dd></div>
+          <div><dt>Format</dt><dd>Intel HEX</dd></div>
+          <div><dt>Transport</dt><dd>Web Serial</dd></div>
+          <div><dt>Uploader</dt><dd>AVRDUDE / WebAssembly（次工程）</dd></div>
+        </dl>
+      </div>
+    </details>
+  </main>
+
+  <footer class="site-footer">
+    <p>MOD1 Firmware Installer Mock · 実機への書き込み機能は未実装です。</p>
+  </footer>
+
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>
