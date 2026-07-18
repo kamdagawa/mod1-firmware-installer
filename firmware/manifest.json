@@ -1,10 +1,22 @@
 {
-  "name": "MOD1 Demo Firmware",
-  "version": "0.1.0-mock",
-  "target": "Arduino Nano / ATmega328P",
-  "build": "UI demonstration only",
-  "mock": true,
-  "hexFile": null,
-  "sha256": null,
-  "notes": "This mock does not write firmware to hardware."
+  "name": "My MOD1 Firmware",
+  "version": "1.0.0",
+  "target": "HAGIWO MOD1 / Arduino Nano / ATmega328P",
+  "build": "2026-07-18",
+  "hexFile": "mod1-my-firmware-v1.0.0.hex",
+  "sha256": "b7664398fc468bacd42246bef951bfcd2fe6724760e0beb73764aec9bbc2772e",
+  "usbFilters": [],
+  "upload": {
+    "baudRates": [115200, 57600],
+    "pageSize": 128,
+    "maxFlashBytes": 30720,
+    "expectedSignature": "1e950f",
+    "verify": true,
+    "commandTimeoutMs": 1800,
+    "syncAttempts": 8,
+    "resetAssertMs": 80,
+    "resetReleaseMs": 80,
+    "bootWaitMs": 260,
+    "pageWriteDelayMs": 8
+  }
 }

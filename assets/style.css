@@ -80,7 +80,6 @@ button:focus-visible, input:focus-visible, summary:focus-visible {
   font-size: .76rem;
   font-weight: 750;
 }
-.badge-mock { color: var(--accent); border-color: rgba(183, 255, 70, .32); }
 .badge-ok { color: var(--success); border-color: rgba(110, 231, 168, .35); }
 .badge-ng { color: var(--danger); border-color: rgba(255, 107, 87, .4); }
 
@@ -284,4 +283,38 @@ button:focus-visible, input:focus-visible, summary:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+.badge-live {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.firmware-source-card {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.firmware-source-card strong { display: block; color: var(--text); }
+.firmware-source-card p { margin: 5px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+
+.file-row {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.file-row input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  color: var(--text);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: var(--bg);
 }

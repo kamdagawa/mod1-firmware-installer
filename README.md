@@ -1,41 +1,28 @@
-# MOD1 Firmware Installer — UI Mock
+# MOD1 Firmware Installer —実機書き込み版
 
-HAGIWO MOD1向けWebファームウェア・インストーラーのUIモックです。
+HAGIWO MOD1で使用されるArduino Nano（ATmega328P）へ、Chrome/EdgeのWeb Serial APIからIntel HEXを書き込む静的Webサイトです。
 
-## 現在できること
+## 実装済み
 
-- GitHub Pagesで静的サイトとして公開
-- Web Serial対応ブラウザーの判定
-- ユーザー操作によるUSBシリアルポート選択
-- USB VID/PIDの表示
-- 安全確認チェック
-- モック進捗・ログ・完了画面の表示
-- スマートフォン向けレイアウト
+- Web SerialによるUSBシリアルポート選択
+- Intel HEXの構文・チェックサム・アドレス範囲検査
+- 任意のSHA-256照合
+- STK500v1ブートローダーへの直接書き込み
+- 115200 / 57600 baudの自動試行
+- ATmega328P署名（1E 95 0F）の確認
+- 128 byteページ単位のFlash書き込み
+- 全ページの読み戻し検証
+- Web上の固定HEXとSDカード内HEXの両方に対応
 
-## 現在できないこと
+## 最初に行う設定
 
-- HEXファイルの読み込み
-- Arduino Nanoへの書き込み
-- AVRDUDE / WebAssemblyの実行
-- 書き込み後のFlash検証
+1. `firmware/` に実際の `.hex` を置く
+2. `firmware/manifest.json` の `hexFile`、名前、バージョン、ビルド日を変更
+3. 任意でSHA-256とUSB VID/PIDを設定
+4. GitHubへアップロードしてPagesを再デプロイ
 
-実機を書き換えないため、UI確認用として安全に使用できます。
+詳細は `docs/DEPLOY_AND_TEST_JA.md` を参照してください。
 
-## ローカル確認
+## 重要
 
-単にindex.htmlを開くだけでも外観は確認できます。
-Web Serialを試す場合は、localhostで配信します。
-
-```bash
-python3 -m http.server 8000
-```
-
-その後、ChromeまたはEdgeで次を開きます。
-
-```text
-http://localhost:8000/
-```
-
-## GitHub Pagesへの公開
-
-`docs/GITHUB_PAGES_SETUP_JA.md` を参照してください。
+実機書き込みはハードウェア、USBシリアル変換チップ、ブートローダーの状態に依存します。最初は交換可能なNanoまたは復旧手段を用意し、必ず少数の実機で検証してください。

@@ -1,11 +1,18 @@
-このフォルダーは正式版でHEXファイルとmanifest.jsonを置く場所です。
+このフォルダーに実際のIntel HEXファイルを置き、manifest.jsonのhexFileを設定してください。
 
-モック版には実機へ書き込めるHEXを含めていません。
-正式版では、例として次のような構成にします。
-
+例:
   firmware/
-    mod1-your-firmware-v1.0.0.hex
+    mod1-my-firmware-v1.0.0.hex
     manifest.json
 
-manifest.jsonにはファームウェア名、バージョン、対象MCU、HEXのパス、
-SHA-256などを記録します。
+manifest.json:
+  "hexFile": "mod1-my-firmware-v1.0.0.hex"
+
+sha256は任意ですが、配布時は設定を推奨します。
+macOS:
+  shasum -a 256 firmware/mod1-my-firmware-v1.0.0.hex
+
+Linux:
+  sha256sum firmware/mod1-my-firmware-v1.0.0.hex
+
+hexFileがnullのままでも、ページ上でSDカード内のHEXを選択すれば実機へ書き込めます。
